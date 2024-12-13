@@ -7,7 +7,7 @@ export default function SignUp() {
   return (
     <Center>
       <Card className="min-w-96">
-        <Heading title="Sign up" icon={<TbUserPlus />} />
+        <Heading title={'Signup'} icon={<TbUserPlus />} />
       </Card>
     </Center>
   );
