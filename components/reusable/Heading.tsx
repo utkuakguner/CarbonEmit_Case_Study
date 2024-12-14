@@ -11,7 +11,7 @@ const Heading: React.FC<CardProps> = ({ title, icon, className }) => {
     return (
         <div className={classNames("flex items-center gap-3", className)}>
             <div className='text-2xl'>{icon}</div>
-            <div className='text-xl'>{title}</div>
+            <div className='text-xl font-bold'>{title}</div>
         </div>
     );
 };

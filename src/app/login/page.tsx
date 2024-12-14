@@ -2,6 +2,7 @@
 
 import { object, string } from "yup";
 
+import Button from "@/components/reusable/Button";
 import Card from "@/components/reusable/Card";
 import Center from "@/components/reusable/Center";
 import FormInput from "@/components/form/FormInput";
@@ -13,18 +14,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function Login() {
   const formSchema = object().shape({
-    email: string().required(),
+    email: string().email().required(),
     password: string().required(),
   });
 
   const {
     setValue,
-    // handleSubmit,
     watch,
-    // formState: { isSubmitting },
+    handleSubmit,
+    formState: { errors, isSubmitting },
+
   } = useForm({
     resolver: yupResolver(formSchema),
   });
+
+  const onSubmit = handleSubmit(() => {
+
+  })
 
   const email = watch('email')
 
@@ -33,9 +39,16 @@ export default function Login() {
   return (
     <Center>
       <Card className="min-w-96">
-        <Heading title={'Login'} icon={<TbLogin />} />
-        <FormInput id='email' value={email} setValue={setValue} label='Email' />
-        <FormInputPassword id='password' value={password} setValue={setValue} label='Password' />
+        <div className="flex flex-col gap-5">
+          <Heading title='Login' icon={<TbLogin />} />
+          <div className="flex flex-col gap-4">
+            <FormInput id='email' value={email} setValue={setValue} label='Email' />
+            <FormInputPassword id='password' value={password} setValue={setValue} label='Password' />
+          </div>
+          <Button onClick={onSubmit} isLoading={isSubmitting}>
+            Login
+          </Button>
+        </div>
       </Card>
     </Center>
   );
