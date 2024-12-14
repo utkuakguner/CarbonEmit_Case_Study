@@ -8,15 +8,19 @@ import Center from "@/components/reusable/Center";
 import FormInput from "@/components/form/FormInput";
 import FormInputPassword from "@/components/form/FormInputPassword";
 import Heading from "@/components/reusable/Heading";
+import React from "react";
 import { TbLogin } from "react-icons/tb";
 import { passwordRegex } from "@/constants/regex";
 import { useForm } from "react-hook-form";
+import { useTranslations } from 'next-intl';
 import { yupResolver } from "@hookform/resolvers/yup";
 
-export default function Login() {
+const Login: React.FC = () => {
+  const t = useTranslations()
+
   const formSchema = object().shape({
-    email: string().required('Email is required').email('Field must be a valid email address'),
-    password: string().required('Password is required').matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase, one number and one special case character'),
+    email: string().required(t('fieldRequired')).email(t('invalidEmail')),
+    password: string().required(t('fieldRequired')).matches(passwordRegex, t('invalidPassword')),
   });
 
   const {
@@ -41,16 +45,18 @@ export default function Login() {
     <Center>
       <Card className="min-w-96">
         <div className="flex flex-col gap-5">
-          <Heading title='Login' icon={<TbLogin />} />
+          <Heading title={t('login')} icon={<TbLogin />} />
           <div className="flex flex-col gap-4">
-            <FormInput id='email' value={email} setValue={setValue} label='Email' errors={errors} />
-            <FormInputPassword id='password' value={password} setValue={setValue} label='Password' errors={errors} />
+            <FormInput id='email' value={email} setValue={setValue} label={t('email')} placeholder={t('email')} errors={errors} />
+            <FormInputPassword id='password' value={password} setValue={setValue} label={t('password')} placeholder={t('password')} errors={errors} />
           </div>
           <Button onClick={onSubmit} isLoading={isSubmitting}>
-            Login
+            {t('login')}
           </Button>
         </div>
       </Card>
     </Center>
   );
 }
+
+export default Login;

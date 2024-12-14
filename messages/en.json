@@ -1,0 +1,11 @@
+{
+    "fieldRequired": "Field required",
+    "invalidEmail": "Field must be a valid email address",
+    "invalidPassword": "Password must contain at least 8 characters, one uppercase, one number and one special case character",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "login": "Login",
+    "signUp": "Sign up"
+}

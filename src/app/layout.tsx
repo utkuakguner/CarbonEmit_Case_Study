@@ -1,8 +1,10 @@
 import "./globals.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
+import { getLocale, getMessages } from 'next-intl/server';
 
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from 'next-intl';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,16 +25,28 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: Props) {
+const RootLayout: React.FC<Props> = async ({ children }) => {
+  const locale = await getLocale();
+
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="min-h-screen flex">
-          {children}
-        </div>
+        <NextIntlClientProvider messages={messages}>
+
+          <div className="min-h-screen flex">
+
+            {children}
+
+          </div>
+        </NextIntlClientProvider>
+
       </body>
     </html>
   );
 }
+
+export default RootLayout

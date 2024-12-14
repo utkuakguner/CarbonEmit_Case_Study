@@ -12,6 +12,7 @@
 		"@hookform/resolvers": "^3.9.1",
 		"classnames": "^2.5.1",
 		"next": "15.1.0",
+		"next-intl": "^3.26.1",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-hook-form": "^7.54.1",
