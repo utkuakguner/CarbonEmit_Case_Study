@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 const axiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -18,8 +18,11 @@ axiosInstance.interceptors.response.use(
     (response: AxiosResponse) => {
         return response.data;
     },
-    () => {
-        return {};
+    (error: AxiosError) => {
+        const message =
+            error?.response?.data || error.message || 'Something went wrong!';
+
+        return { message };
     }
 );
 

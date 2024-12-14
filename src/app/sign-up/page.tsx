@@ -1,15 +1,16 @@
 'use client'
 
+import React, { useState } from "react";
 import { object, string } from "yup";
 
 import Button from "@/components/reusable/Button";
 import Card from "@/components/reusable/Card";
 import Center from "@/components/reusable/Center";
+import Error from "@/components/reusable/Error";
 import FormInput from "@/components/form/FormInput";
 import FormInputPassword from "@/components/form/FormInputPassword";
 import Heading from "@/components/reusable/Heading";
 import Link from "next/link";
-import React from "react";
 import { TbUserPlus } from "react-icons/tb";
 import pages from "@/constants/pages";
 import { passwordRegex } from "@/constants/regex";
@@ -20,6 +21,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const SignUp: React.FC = () => {
   const t = useTranslations()
+
+  const [error, setError] = useState('')
 
   const formSchema = object().shape({
     firstName: string().required(t('fieldRequired')),
@@ -38,11 +41,16 @@ const SignUp: React.FC = () => {
   });
 
   const onSubmit = handleSubmit(async () => {
-    await sendSignUpRequest({
+    const { message } = await sendSignUpRequest({
       name: `${firstName} ${lastName}`,
       email,
       password
     })
+
+    if (message) {
+      setError(message)
+      return
+    }
 
     window.location.href = pages.login
   })
@@ -68,6 +76,7 @@ const SignUp: React.FC = () => {
             <FormInput id='email' value={email} setValue={setValue} label={t('email')} placeholder={t('email')} errors={errors} />
             <FormInputPassword id='password' value={password} setValue={setValue} label={t('password')} placeholder={t('password')} errors={errors} />
           </div>
+          <Error message={error} />
           <Button onClick={onSubmit} isLoading={isSubmitting}>
             {t('signUp')}
           </Button>

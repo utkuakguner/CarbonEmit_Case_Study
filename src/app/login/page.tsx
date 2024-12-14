@@ -1,16 +1,17 @@
 'use client'
 
+import React, { useState } from "react";
 import { object, string } from "yup";
 
 import Button from "@/components/reusable/Button";
 import Card from "@/components/reusable/Card";
 import Center from "@/components/reusable/Center";
 import Cookie from "js-cookie";
+import Error from "@/components/reusable/Error";
 import FormInput from "@/components/form/FormInput";
 import FormInputPassword from "@/components/form/FormInputPassword";
 import Heading from "@/components/reusable/Heading";
 import Link from "next/link";
-import React from "react";
 import { TbLogin } from "react-icons/tb";
 import cookieNames from "@/constants/cookieNames";
 import pages from "@/constants/pages";
@@ -23,6 +24,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const Login: React.FC = () => {
   const t = useTranslations()
+
+  const [error, setError] = useState('')
 
   const formSchema = object().shape({
     email: string().required(t('fieldRequired')).email(t('invalidEmail')),
@@ -44,9 +47,14 @@ const Login: React.FC = () => {
   const password = watch('password')
 
   const onSubmit = handleSubmit(async () => {
-    const { data: accessToken } = await sendLoginRequest({
+    const { data: accessToken, message } = await sendLoginRequest({
       email, password
     })
+
+    if (message) {
+      setError(message)
+      return
+    }
 
     Cookie.set(cookieNames.accessToken, accessToken, { expires: 7 });
 
@@ -64,6 +72,7 @@ const Login: React.FC = () => {
             <FormInput id='email' value={email} setValue={setValue} label={t('email')} placeholder={t('email')} errors={errors} />
             <FormInputPassword id='password' value={password} setValue={setValue} label={t('password')} placeholder={t('password')} errors={errors} />
           </div>
+          <Error message={error} />
           <Button onClick={onSubmit} isLoading={isSubmitting}>
             {t('login')}
           </Button>

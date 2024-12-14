@@ -1,3 +1,4 @@
+import { Response } from '@/types/response';
 import axiosInstance from './instance';
 import routes from '@/constants/routes';
 
@@ -6,8 +7,5 @@ interface Data {
     password: string;
 }
 
-export const sendLoginRequest = async (data: Data) => {
-    const response = await axiosInstance.post(routes.login, data);
-
-    return response;
-};
+export const sendLoginRequest = async (data: Data): Promise<Response> =>
+    axiosInstance.post(routes.login, data);
