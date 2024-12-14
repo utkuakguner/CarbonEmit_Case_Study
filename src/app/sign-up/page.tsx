@@ -8,9 +8,12 @@ import Center from "@/components/reusable/Center";
 import FormInput from "@/components/form/FormInput";
 import FormInputPassword from "@/components/form/FormInputPassword";
 import Heading from "@/components/reusable/Heading";
+import Link from "next/link";
 import React from "react";
 import { TbUserPlus } from "react-icons/tb";
+import pages from "@/constants/pages";
 import { passwordRegex } from "@/constants/regex";
+import { sendSignUpRequest } from "@/utils/helper/request/signUp";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -34,8 +37,14 @@ const SignUp: React.FC = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = handleSubmit(() => {
+  const onSubmit = handleSubmit(async () => {
+    await sendSignUpRequest({
+      name: `${firstName} ${lastName}`,
+      email,
+      password
+    })
 
+    window.location.href = pages.login
   })
 
   const firstName = watch('firstName')
@@ -49,7 +58,7 @@ const SignUp: React.FC = () => {
   return (
     <Center>
       <Card className="max-w-md	w-full">
-      <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5">
           <Heading title={t('signUp')} icon={<TbUserPlus />} />
           <div className="flex flex-col gap-4">
             <div className="flex gap-4 grow">
@@ -62,6 +71,11 @@ const SignUp: React.FC = () => {
           <Button onClick={onSubmit} isLoading={isSubmitting}>
             {t('signUp')}
           </Button>
+          <Center className='text-sm underline'>
+            <Link href={pages.login}>
+              {t('login')}
+            </Link>
+          </Center>
         </div>
       </Card>
     </Center>
