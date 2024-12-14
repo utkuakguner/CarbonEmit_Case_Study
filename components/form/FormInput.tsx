@@ -1,7 +1,8 @@
+import { FieldErrors, UseFormSetValue } from "react-hook-form";
+
 import FormWrapper from "./FormWrapper";
 import Input from "./Input";
 import React from 'react'
-import { UseFormSetValue } from "react-hook-form";
 
 interface Props {
     id: string;
@@ -11,6 +12,8 @@ interface Props {
     value: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setValue: UseFormSetValue<any>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    errors: FieldErrors<any>,
 }
 
 const FormInput: React.FC<Props> = ({
@@ -20,9 +23,10 @@ const FormInput: React.FC<Props> = ({
     type,
     value = '',
     setValue,
+    errors
 }) => {
     return (
-        <FormWrapper id={id} label={label}>
+        <FormWrapper id={id} label={label} errors={errors}>
             <Input
                 id={id}
                 value={value}

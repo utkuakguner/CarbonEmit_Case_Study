@@ -1,9 +1,9 @@
+import { FieldErrors, UseFormSetValue } from "react-hook-form";
 import React, { useState } from 'react'
 import { TbEye, TbEyeOff } from 'react-icons/tb';
 
 import FormWrapper from './FormWrapper';
 import Input from './Input';
-import { UseFormSetValue } from "react-hook-form";
 
 interface Props {
     id: string;
@@ -12,6 +12,8 @@ interface Props {
     value: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setValue: UseFormSetValue<any>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    errors: FieldErrors<any>,
 }
 
 const FormInputPassword: React.FC<Props> = ({
@@ -20,11 +22,12 @@ const FormInputPassword: React.FC<Props> = ({
     placeholder,
     value = '',
     setValue,
+    errors
 }) => {
     const [isClear, setIsClear] = useState(false)
 
     return (
-        <FormWrapper id={id} label={label}>
+        <FormWrapper id={id} label={label} errors={errors}>
             <div className='relative'>
                 <Input
                     id={id}

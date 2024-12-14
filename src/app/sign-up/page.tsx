@@ -15,10 +15,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function SignUp() {
   const formSchema = object().shape({
-    firstName: string().required(),
-    lastName: string().required(),
-    email: string().email().required(),
-    password: string().required().matches(passwordRegex, '123'),
+    firstName: string().required('First name is required'),
+    lastName: string().required('Last name is required'),
+    email: string().required('Email is required').email('Field must be a valid email address'),
+    password: string().required('Password is required').matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase, one number and one special case character'),
   });
 
   const {
@@ -49,11 +49,11 @@ export default function SignUp() {
           <Heading title='Sign up' icon={<TbUserPlus />} />
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
-              <FormInput id='firstName' value={firstName} setValue={setValue} label='First name' />
-              <FormInput id='lastName' value={lastName} setValue={setValue} label='Last name' />
+              <FormInput id='firstName' value={firstName} setValue={setValue} label='First name' errors={errors} />
+              <FormInput id='lastName' value={lastName} setValue={setValue} label='Last name' errors={errors} />
             </div>
-            <FormInput id='email' value={email} setValue={setValue} label='Email' />
-            <FormInputPassword id='password' value={password} setValue={setValue} label='Password' />
+            <FormInput id='email' value={email} setValue={setValue} label='Email' errors={errors} />
+            <FormInputPassword id='password' value={password} setValue={setValue} label='Password' errors={errors} />
           </div>
           <Button onClick={onSubmit} isLoading={isSubmitting}>
             Create account

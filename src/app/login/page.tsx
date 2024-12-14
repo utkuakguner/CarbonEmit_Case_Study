@@ -9,13 +9,14 @@ import FormInput from "@/components/form/FormInput";
 import FormInputPassword from "@/components/form/FormInputPassword";
 import Heading from "@/components/reusable/Heading";
 import { TbLogin } from "react-icons/tb";
+import { passwordRegex } from "@/constants/regex";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function Login() {
   const formSchema = object().shape({
-    email: string().email().required(),
-    password: string().required(),
+    email: string().required('Email is required').email('Field must be a valid email address'),
+    password: string().required('Password is required').matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase, one number and one special case character'),
   });
 
   const {
@@ -42,8 +43,8 @@ export default function Login() {
         <div className="flex flex-col gap-5">
           <Heading title='Login' icon={<TbLogin />} />
           <div className="flex flex-col gap-4">
-            <FormInput id='email' value={email} setValue={setValue} label='Email' />
-            <FormInputPassword id='password' value={password} setValue={setValue} label='Password' />
+            <FormInput id='email' value={email} setValue={setValue} label='Email' errors={errors} />
+            <FormInputPassword id='password' value={password} setValue={setValue} label='Password' errors={errors} />
           </div>
           <Button onClick={onSubmit} isLoading={isSubmitting}>
             Login
