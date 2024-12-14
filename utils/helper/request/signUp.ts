@@ -10,5 +10,5 @@ interface Data {
 export const sendSignUpRequest = async (data: Data) => {
     const response = await axiosInstance.post(routes.signUp, data);
 
-    return response.data
+    return response;
 };

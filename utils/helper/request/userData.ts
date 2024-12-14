@@ -6,5 +6,5 @@ export const sendUserDataRequest = async (accessToken: string) => {
         headers: { Authorization: `Bearer ${accessToken}` },
     });
 
-    return response.data;
+    return response;
 };

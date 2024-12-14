@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const axiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -7,10 +7,6 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config) => {
-        // const accessToken = document.cookie;
-
-        // config.headers['Authorization'] = `Bearer: ${accessToken}`;
-
         return config;
     },
     (error) => {
@@ -20,14 +16,10 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
     (response: AxiosResponse) => {
-        return response;
+        return response.data;
     },
-    (error: AxiosError) => {
-        const message = error.message || 'Something went wrong!';
-
-        console.error('Error response:', message);
-
-        return Promise.reject(new Error(message));
+    () => {
+        return {};
     }
 );
 

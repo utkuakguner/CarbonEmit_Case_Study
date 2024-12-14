@@ -7,5 +7,6 @@
     "firstName": "First name",
     "lastName": "Last name",
     "login": "Login",
-    "signUp": "Sign up"
+    "signUp": "Sign up",
+    "unauthorizedMessage": "You don't have the authority to view this page"
 }

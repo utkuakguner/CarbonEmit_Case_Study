@@ -9,5 +9,5 @@ interface Data {
 export const sendLoginRequest = async (data: Data) => {
     const response = await axiosInstance.post(routes.login, data);
 
-    return response.data
+    return response;
 };

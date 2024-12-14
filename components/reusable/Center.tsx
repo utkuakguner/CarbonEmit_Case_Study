@@ -9,7 +9,7 @@ interface CardProps {
 
 const Center: React.FC<CardProps> = ({ children, className }) => {
     return (
-        <div className={classNames("grow flex justify-center items-center", className)}>
+        <div className={classNames("grow flex flex-col justify-center items-center", className)}>
             {children}
         </div>
     );
