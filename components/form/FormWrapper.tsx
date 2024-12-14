@@ -1,5 +1,6 @@
 import { FieldErrors } from 'react-hook-form';
 import React from 'react'
+import classNames from 'classnames';
 
 interface Props {
     id: string,
@@ -20,7 +21,7 @@ const FormWrapper: React.FC<Props> = ({
     const error = errors[id]?.message
 
     return (
-        <div className={className}>
+        <div className={classNames('grow', className)}>
             <label htmlFor={id} className={
                 "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             }>{label}</label>

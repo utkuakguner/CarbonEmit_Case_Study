@@ -48,11 +48,11 @@ const SignUp: React.FC = () => {
 
   return (
     <Center>
-      <Card className="min-w-96">
-        <div className="flex flex-col gap-5">
+      <Card className="max-w-md	w-full">
+      <div className="flex flex-col gap-5">
           <Heading title={t('signUp')} icon={<TbUserPlus />} />
           <div className="flex flex-col gap-4">
-            <div className="flex gap-4">
+            <div className="flex gap-4 grow">
               <FormInput id='firstName' value={firstName} setValue={setValue} label={t('firstName')} placeholder={t('firstName')} errors={errors} />
               <FormInput id='lastName' value={lastName} setValue={setValue} label={t('lastName')} placeholder={t('lastName')} errors={errors} />
             </div>

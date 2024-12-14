@@ -43,8 +43,8 @@ const Login: React.FC = () => {
 
   return (
     <Center>
-      <Card className="min-w-96">
-        <div className="flex flex-col gap-5">
+      <Card className="max-w-md	w-full">
+      <div className="flex flex-col gap-5">
           <Heading title={t('login')} icon={<TbLogin />} />
           <div className="flex flex-col gap-4">
             <FormInput id='email' value={email} setValue={setValue} label={t('email')} placeholder={t('email')} errors={errors} />
