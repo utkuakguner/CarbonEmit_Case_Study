@@ -5,6 +5,7 @@ import LimitSelect from "@/components/reusable/LimitSelect";
 import Link from "next/link";
 import LogoutButton from "@/components/reusable/LogoutButton";
 import React from "react";
+import Table from "@/components/reusable/Table";
 import { TbUserBolt } from "react-icons/tb";
 import Unauthorized from "@/components/reusable/Unauthorized";
 import { getServerSession } from "@/utils/helper/session";
@@ -13,9 +14,7 @@ import pages from "@/constants/pages";
 import { sendActorsRequest } from "@/utils/helper/request/actors";
 
 interface Props {
-  searchParams: {
-    limit?: string;
-  };
+  searchParams?: { [key: string]: string | undefined }
 }
 
 const Admin: React.FC<Props> = async ({ searchParams }) => {
@@ -25,15 +24,15 @@ const Admin: React.FC<Props> = async ({ searchParams }) => {
 
   if (!userData || !userData.admin) return <Unauthorized />
 
-  const limit = parseInt(searchParams.limit || '5');
+  const limit = parseInt(searchParams?.limit || '5');
 
   const actors = await sendActorsRequest(limit);
 
-  console.log(actors)
+  const columns = ['name', 'birth_year', 'death_year', 'nationality']
 
   return (
     <Center>
-      <Card className="max-w-2xl w-full">
+      <Card className="max-w-4xl w-full">
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center">
             <Heading title={t('admin')} icon={<TbUserBolt />} />
@@ -45,6 +44,7 @@ const Admin: React.FC<Props> = async ({ searchParams }) => {
             </div>
           </div>
           <LimitSelect limit={limit} />
+          <Table data={actors} columns={columns} />
         </div>
       </Card>
     </Center>

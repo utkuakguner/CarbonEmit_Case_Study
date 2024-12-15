@@ -16,7 +16,7 @@ freeTestApiInstance.interceptors.request.use(
 
 freeTestApiInstance.interceptors.response.use(
     (response: AxiosResponse) => {
-        return response;
+        return response.data;
     },
     () => {
         return [];

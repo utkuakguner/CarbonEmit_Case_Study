@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./table.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import { getLocale, getMessages } from 'next-intl/server';

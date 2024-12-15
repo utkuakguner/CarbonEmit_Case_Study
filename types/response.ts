@@ -1,4 +1,4 @@
-import { StringMap } from "./common";
+import { AnyMap } from "./common";
 
 export interface BaseResponse {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -6,4 +6,4 @@ export interface BaseResponse {
     message?: string;
 }
 
-export type FreeTestApiResponse = StringMap[]
+export type FreeTestApiResponse = AnyMap[]

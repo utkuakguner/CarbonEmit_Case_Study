@@ -1,6 +1,5 @@
 'use client'
 
-import Button from './Button';
 import Cookie from "js-cookie";
 import React from 'react';
 import { TbLogout } from 'react-icons/tb';
@@ -18,10 +17,10 @@ const LogoutButton: React.FC = () => {
     }
 
     return (
-        <Button onClick={onClick} className='bg-gray-50 hover:bg-gray-200 text-black font-bold py-1.5 px-4 rounded flex items-center gap-2'>
+        <button onClick={onClick} className='bg-gray-50 hover:bg-gray-200 text-black font-bold py-1.5 px-4 rounded flex items-center gap-2'>
             <TbLogout />
             {t('logout')}
-        </Button>
+        </button>
     );
 };
 
