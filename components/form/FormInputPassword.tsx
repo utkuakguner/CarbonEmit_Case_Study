@@ -1,3 +1,5 @@
+'use client';
+
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import React, { useState } from 'react';
 import { TbEye, TbEyeOff } from 'react-icons/tb';
@@ -33,7 +35,7 @@ const FormInputPassword: React.FC<Props> = ({
         <Button
           isIconOnly
           size="sm"
-          variant="flat"
+          variant="light"
           onClick={() => setIsClear(!isClear)}
         >
           {isClear ? <TbEyeOff /> : <TbEye />}

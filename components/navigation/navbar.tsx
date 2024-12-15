@@ -7,14 +7,14 @@ import {
 import { link as linkStyles } from '@nextui-org/theme';
 import NextLink from 'next/link';
 import clsx from 'clsx';
-import { useTranslations } from 'next-intl';
 
 import LogoutButton from '../reusable/LogoutButton';
 
 import { siteConfig } from '@/config/site';
+import { getServerTranslations } from '@/utils/helper/translation';
 
-export const Navbar = () => {
-  const t = useTranslations();
+export const Navbar = async () => {
+  const t = await getServerTranslations();
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
