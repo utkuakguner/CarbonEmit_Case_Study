@@ -1,13 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface CardProps {
+interface Props {
     children?: React.ReactNode;
     className?: string
 
 }
 
-const Center: React.FC<CardProps> = ({ children, className }) => {
+const Center: React.FC<Props> = ({ children, className }) => {
     return (
         <div className={classNames("grow flex flex-col justify-center items-center", className)}>
             {children}

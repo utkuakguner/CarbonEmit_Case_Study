@@ -8,5 +8,9 @@
     "lastName": "Last name",
     "login": "Login",
     "signUp": "Sign up",
-    "unauthorizedMessage": "You don't have the authority to view this page"
+    "unauthorizedMessage": "You don't have the authority to view this page",
+    "user": "User",
+    "admin": "Admin",
+    "logout": "Logout",
+    "limit": "Limit"
 }

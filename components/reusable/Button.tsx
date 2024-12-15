@@ -3,14 +3,14 @@ import React, { useMemo } from 'react';
 import Spinner from './Spinner';
 import classNames from 'classnames';
 
-interface CardProps {
+interface Props {
     children?: React.ReactNode;
     className?: string
     onClick?: () => void
     isLoading?: boolean
 }
 
-const Button: React.FC<CardProps> = ({ children, className, onClick, isLoading }) => {
+const Button: React.FC<Props> = ({ children, className, onClick, isLoading }) => {
     const Content = useMemo(() => {
         if (isLoading) return <Spinner />
 
