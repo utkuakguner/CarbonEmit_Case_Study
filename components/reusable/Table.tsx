@@ -8,28 +8,30 @@ interface Props {
 
 const Table: React.FC<Props> = ({ data = [], columns = [] }) => {
     return (
-        <table>
-            <thead>
-                <tr>
-                    {columns.map((column) => (
-                        <th key={column}>
-                            {column}
-                        </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {data.map((row, i) => (
-                    <tr key={`row_${i}`}>
-                        {columns.map((column, j) => (
-                            <th key={`cell_${i}_${j}`}>
-                                {row[column]}
+        <div className='custom-table'>
+            <table>
+                <thead>
+                    <tr>
+                        {columns.map((column) => (
+                            <th key={column}>
+                                {column}
                             </th>
                         ))}
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {data.map((row, i) => (
+                        <tr key={`row_${i}`}>
+                            {columns.map((column, j) => (
+                                <td key={`cell_${i}_${j}`}>
+                                    {row[column]}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 };
 

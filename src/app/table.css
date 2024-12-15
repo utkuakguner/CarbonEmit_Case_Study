@@ -1,0 +1,23 @@
+.custom-table {
+    border-color: rgb(68, 64, 60);
+    border-width: 1px;
+    padding: 16px 24px 32px 24px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.custom-table table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.custom-table th,
+.custom-table td {
+    text-align: left;
+    padding: 8px 12px;
+}
+
+.custom-table tr {
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(68, 64, 60);
+}

@@ -32,7 +32,7 @@ const User: React.FC<Props> = async ({ searchParams }) => {
 
     return (
         <Center>
-            <Card className="max-w-4xl	w-full">
+            <Card className="max-w-5xl	w-full">
                 <div className="flex flex-col gap-4">
                     <div className="flex justify-between items-center">
                         <Heading title={t('user')} icon={<TbUser />} />
