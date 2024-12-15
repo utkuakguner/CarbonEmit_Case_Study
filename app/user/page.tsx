@@ -23,9 +23,7 @@ const User: React.FC<Props> = async ({ searchParams }) => {
 
   if (!userData) return <Unauthorized />;
 
-  const params = await searchParams;
-
-  const limit = parseInt(params?.limit || '5');
+  const limit = parseInt((await searchParams)?.limit || '5');
 
   const movies = await sendMoviesRequest(limit);
 

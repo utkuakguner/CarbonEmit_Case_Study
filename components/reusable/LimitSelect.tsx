@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import classNames from 'classnames';
 import { Button } from '@nextui-org/button';
 
 interface Props {
@@ -27,14 +26,9 @@ const LimitSelect: React.FC<Props> = ({ limit }) => {
         <Button
           key={option}
           isIconOnly
-          className={classNames(
-            'border flex items-center justify-center bg-stone-900 duration-200',
-            limit === option
-              ? 'border-blue-500 text-blue-500 cursor-not-allowed'
-              : 'border-stone-500 hover:bg-stone-600 text-white cursor-pointer',
-          )}
+          color={option === limit ? 'primary' : 'default'}
           size="sm"
-          variant="flat"
+          variant="bordered"
           onClick={() => onClick(option)}
         >
           {option}
