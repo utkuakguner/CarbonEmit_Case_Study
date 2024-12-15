@@ -58,11 +58,8 @@ const SignUp: React.FC = () => {
   });
 
   const firstName = watch('firstName');
-
   const lastName = watch('lastName');
-
   const email = watch('email');
-
   const password = watch('password');
 
   return (

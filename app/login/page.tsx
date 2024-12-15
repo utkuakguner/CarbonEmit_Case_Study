@@ -43,7 +43,6 @@ const Login: React.FC = () => {
   });
 
   const email = watch('email');
-
   const password = watch('password');
 
   const onSubmit = handleSubmit(async () => {
