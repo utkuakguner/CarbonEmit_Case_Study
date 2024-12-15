@@ -5,6 +5,7 @@ import LimitSelect from "@/components/reusable/LimitSelect";
 import Link from "next/link";
 import LogoutButton from "@/components/reusable/LogoutButton";
 import React from "react";
+import { SearchParams } from "@/types/common";
 import Table from "@/components/reusable/Table";
 import { TbUser } from "react-icons/tb";
 import Unauthorized from "@/components/reusable/Unauthorized";
@@ -14,7 +15,7 @@ import pages from "@/constants/pages";
 import { sendMoviesRequest } from "@/utils/helper/request/movies";
 
 interface Props {
-    searchParams?: { [key: string]: string | undefined }
+    searchParams?: Promise<SearchParams> | undefined
 }
 
 const User: React.FC<Props> = async ({ searchParams }) => {
@@ -24,7 +25,9 @@ const User: React.FC<Props> = async ({ searchParams }) => {
 
     if (!userData) return <Unauthorized />
 
-    const limit = parseInt(searchParams?.limit || '5');
+    const params = await searchParams;
+
+    const limit = parseInt(params?.limit || '5');
 
     const movies = await sendMoviesRequest(limit);
 
