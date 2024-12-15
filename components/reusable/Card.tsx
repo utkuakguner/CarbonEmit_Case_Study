@@ -8,7 +8,7 @@ interface Props {
 
 const Card: React.FC<Props> = ({ children, className }) => {
     return (
-        <div className={classNames("p-6 border border-stone-700 bg-stone-950 rounded-xl", className)}>
+        <div className={classNames("m-6 p-6 border border-stone-700 bg-stone-950 rounded-xl", className)}>
             {children}
         </div>
     );
