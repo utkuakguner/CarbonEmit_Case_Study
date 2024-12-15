@@ -25,9 +25,7 @@ const Admin: React.FC<Props> = async ({ searchParams }) => {
 
   if (!userData || !userData.admin) return <Unauthorized />
 
-  const params = await searchParams;
-
-  const limit = parseInt(params?.limit || '5');
+  const limit = parseInt((await searchParams)?.limit || '5');
 
   const actors = await sendActorsRequest(limit);
 
