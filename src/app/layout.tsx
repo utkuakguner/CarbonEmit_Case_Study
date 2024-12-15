@@ -36,14 +36,10 @@ const RootLayout: React.FC<Props> = async ({ children }) => {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-
-          <div className="min-h-screen flex">
-
-            {children}
-
-          </div>
-        </NextIntlClientProvider>
-
+             <div className="min-h-screen flex">
+              {children}
+            </div>
+         </NextIntlClientProvider>
       </body>
     </html>
   );

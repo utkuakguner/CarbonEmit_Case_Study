@@ -1,11 +1,11 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
-const axiosInstance = axios.create({
+const baseInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BASE_URL,
     timeout: 10000,
 });
 
-axiosInstance.interceptors.request.use(
+baseInstance.interceptors.request.use(
     (config) => {
         return config;
     },
@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use(
     }
 );
 
-axiosInstance.interceptors.response.use(
+baseInstance.interceptors.response.use(
     (response: AxiosResponse) => {
         return response.data;
     },
@@ -26,4 +26,4 @@ axiosInstance.interceptors.response.use(
     }
 );
 
-export default axiosInstance;
+export default baseInstance;

@@ -9,7 +9,9 @@ export const getServerSession = async () => {
 
     const accessToken = String(accessTokenCookie?.value);
 
-    const { data: userData } = await sendUserDataRequest(accessToken);
+    if (!accessToken) return null;
 
-    return userData;
+    const { data } = await sendUserDataRequest(accessToken);
+
+    return data || null;
 };

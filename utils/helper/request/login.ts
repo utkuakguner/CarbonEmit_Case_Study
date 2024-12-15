@@ -1,5 +1,5 @@
-import { Response } from '@/types/response';
-import axiosInstance from './instance';
+import { BaseResponse } from '@/types/response';
+import baseInstance from './instance/baseInstance';
 import routes from '@/constants/routes';
 
 interface Data {
@@ -7,5 +7,5 @@ interface Data {
     password: string;
 }
 
-export const sendLoginRequest = async (data: Data): Promise<Response> =>
-    axiosInstance.post(routes.login, data);
+export const sendLoginRequest = async (data: Data): Promise<BaseResponse> =>
+    baseInstance.post(routes.login, data);
